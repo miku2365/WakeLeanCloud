@@ -3,7 +3,7 @@ var http = require('http');
 var task = [];
 task.push(function(callback){
   console.time('访问3个网站时间统计');
-  http.get('http://www.baidu.com/', function(res) { 
+  http.get('(process.env.SITE)', function(res) { 
       console.log("百度访问结果: " + res.statusCode);
       setTimeout(function() {
             callback(null);
