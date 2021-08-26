@@ -46,5 +46,5 @@ task.push(function(callback){
 async.waterfall(task, function(err,result){
   console.timeEnd('访问网站时间统计');
   if(err) return console.log(err);
-  console.log('访问成功');
+  console.log('全部访问成功');
 })
