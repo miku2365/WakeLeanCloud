@@ -1,37 +1,46 @@
 var async = require('async');
-var http = require('http');
+var http = require('https');
 var task = [];
 task.push(function(callback){
   console.time('访问3个网站时间统计');
-  http.get('(process.env.SITE)', function(res) { 
-      console.log("百度访问结果: " + res.statusCode);
+  https.get({
+        host: (process.env.SITE),
+        port: 443
+  },function(res) { 
+      console.log("①访问结果: " + res.statusCode);
       setTimeout(function() {
             callback(null);
           }, 5000);
     }).on('error', function(e) { 
-        console.log("百度访问结果: " + e.message);
+        console.log("①访问结果: " + e.message);
         callback(e);
       });
 })
  
 task.push(function(callback){
-  http.get('http://www.youku.com/', function(res) { 
-      console.log("优酷访问结果: " + res.statusCode);
+  https.get({
+        host: (process.env.SITE2),
+        prot: 443
+  },function(res) { 
+      console.log("②访问结果: " + res.statusCode);
       setTimeout(function() {
             callback(null);
           }, 10000);
     }).on('error', function(e) {
-        console.log("优酷访问结果: " + e.message);
+        console.log("②访问结果: " + e.message);
         callback(e);
       });
 })
  
 task.push(function(callback){
-  http.get('http://www.qq.com/', function(res) { 
-      console.log("腾讯访问结果: " + res.statusCode);
+  https.get({
+        host: (process.env.SITE3),
+        prot: 443
+  },function(res) { 
+      console.log("③访问结果: " + res.statusCode);
       callback(null);
     }).on('error', function(e) { 
-        console.log("腾讯访问结果: " + e.message);
+        console.log("③访问结果: " + e.message);
         callback(e);
       });
 })
