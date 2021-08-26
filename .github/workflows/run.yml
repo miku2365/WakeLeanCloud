@@ -17,8 +17,8 @@ jobs:
          run: |
            sudo npm install https async dotenv
            echo SITE="${{ secrets.SITE }}" > .env
-           echo SITE="${{ secrets.SITE2 }}" >> .env
-           echo SITE="${{ secrets.SITE3 }}" >> .env
+           echo SITE2="${{ secrets.SITE2 }}" >> .env
+           echo SITE3="${{ secrets.SITE3 }}" >> .env
        - name: run
          run: |
            node run.js
