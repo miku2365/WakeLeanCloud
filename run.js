@@ -9,14 +9,40 @@ task.push(function(callback){
 	host: (process.env.SITE),
 	port: 443
   }, function(res) { 
-      console.log("访问结果: " + res.statusCode); 
+      console.log("①访问结果: " + res.statusCode); 
       callback(null);
     }).on('error', function(e) { 
-        console.log("访问结果: " + e.message);
+        console.log("①访问结果: " + e.message);
         callback(e);
       });
 })
  
+task.push(function(callback){
+  https.get({
+	host: (process.env.SITE2),
+	port: 443
+  }, function(res) { 
+      console.log("②访问结果: " + res.statusCode); 
+      callback(null);
+    }).on('error', function(e) { 
+        console.log("②访问结果: " + e.message);
+        callback(e);
+      });
+})
+
+task.push(function(callback){
+  https.get({
+	host: (process.env.SITE3),
+	port: 443
+  }, function(res) { 
+      console.log("③访问结果: " + res.statusCode); 
+      callback(null);
+    }).on('error', function(e) { 
+        console.log("③访问结果: " + e.message);
+        callback(e);
+      });
+})
+
 async.waterfall(task, function(err,result){
   console.timeEnd('访问网站时间统计');
   if(err) return console.log(err);
