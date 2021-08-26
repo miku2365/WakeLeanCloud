@@ -1,5 +1,5 @@
 var async = require('async');
-var http = require('https');
+var https = require('https');
 var task = [];
 task.push(function(callback){
   console.time('访问3个网站时间统计');
